@@ -4,14 +4,8 @@ import struct
 from matplotlib import pyplot as pl
 from scipy import misc
 from scipy import ndimage
-#import pylab
-#from pylab import *
-#import Image
 
-
-
-bound = 121*68*3 #THIS IS THE SIZE OF AND IMAGE 16*121*16*68*3 WHICH IS (1080,1920,3)rgb IMAGE
-
+bound = 121*68*3                 #THIS IS THE SIZE OF AND IMAGE 16*121*16*68*3 WHICH IS (1080,1920,3)rgb IMAGE
 with open("capture/test-004.imv", 'rb') as f:
     data = f.read() #some 10 frames can be excluded while loading m_v file
 
@@ -29,9 +23,9 @@ def f(data):
         yield struct.unpack('h', data[base+2:base+4])
 
 arr = f(data)
-finalarr = [i[0] for i in arr]#i[0] taking first element of the tuple
-ratio = int(len(finalarr)/bound) #taking number of frames to process
-m_v = np.array(finalarr, dtype=int) #assigning the array to the np array
+finalarr = [i[0] for i in arr]              #i[0] taking first element of the tuple
+ratio = int(len(finalarr)/bound)            #taking number of frames to process
+m_v = np.array(finalarr, dtype=int)         #assigning the array to the np array
 m_voriginal = m_v
 frame=m_v.reshape((ratio,68,121,3))
 
@@ -109,6 +103,7 @@ def find_appropriate_frame(imax,jmax,add_thresmin,add_thresmax,sat_thres,frame_m
             area_max = real_maxarr[x]
             count_max = x
     print count_max
+    ############################BELOW PORTION IS TO OBTAIN THE MAXIMUM AREA SIZE BY SORTING AND COMPARING WITH THE ORIGINALLY OBTAIN ARRAY################
     #maxsize.sort()
     #maxsize = maxsize[:len(maxsize)-5] #this is for excluding 5 most probables random maximum value
     #count = 0
@@ -119,6 +114,8 @@ def find_appropriate_frame(imax,jmax,add_thresmin,add_thresmax,sat_thres,frame_m
     #        count +=1
     #print count
     #return count,maxsize.max()
+    ######################################END#####################################################
+    
     return count_max,area_max
 
 def normalize(arr):
@@ -134,6 +131,7 @@ def f_median(arr_index_collector):
         #median.append(val)
     return int(arr_index_collector[length / 2])
         #median.append(val)
+        
 def total_img(frame):
         lena = misc.imread('capture\stills-004\still-00'+str(frame+1)+'.jpg')
         pl.imshow(lena)
@@ -160,6 +158,8 @@ def plot_frame(frame_number):
     #med_denoised = ndimage.median_filter(noisy, 3)
     #########################################################
     ####################### FINDING THE REQUIRED PROTION OF THE IMAGE ##################
+    
+    
     array_index_collector = []
     median = []
     val = 0
@@ -199,4 +199,4 @@ if area_size < 100 :
     print "no motion detected"
 else:
     #total_img(required_frame)
-    plot_frame(required_frame)
+    plot_frame(required_frame) #Will show all the frames and required area size out of which we have to find frame having max area size
