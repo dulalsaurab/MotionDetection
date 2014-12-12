@@ -163,7 +163,7 @@ def plot_frame(frame_number):
     array_index_collector = []
     median = []
     val = 0
-    for i in xrange(35,40):
+    for i in xrange(35,40): #only checking the middle portion of the frame, sice moving man or person should necessarily show motion there 
         for j in xrange(20,120):
             if(sad[121*i+j]<300) or (abs(x_val[121*i+j])<1) or (abs(y_val[121*i+j])<1):
                 #for k in xrange(16):
