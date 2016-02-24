@@ -1,3 +1,11 @@
+'''
+Created on Jan 5, 2016
+
+@author: Saurab Dulal
+Motion Detection using arm side of Respberry PI
+
+'''
+
 
 import numpy as np
 import struct
