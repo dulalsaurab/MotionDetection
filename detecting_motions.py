@@ -1,5 +1,5 @@
 '''
-Created on Jan 5, 2016
+Created on Jan 5, 2013
 
 @author: Saurab Dulal and Kapil Devkota 
 Motion Detection using arm side of Respberry PI
