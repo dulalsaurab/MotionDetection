@@ -5,4 +5,3 @@ This repository contains the source code for the motion detection from the .mv f
 1. First it process a motion vector file, from which a frame(having motion)and maximum area exposed is detected.
 2. And finally a moving object is clipped out from that motion vector file.
 
-**Saurab Dulal**
